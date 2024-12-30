@@ -1,5 +1,7 @@
 from board import (taxi, bus, underground, river)
 
+print("Scotland Yard - The Pythonic Way")
+
 def _predict(position: int, vehicle: str) -> list[int]:
     ret = []
     paths = []
@@ -39,7 +41,7 @@ def predict(positions: list[int], vehicle: str) -> list[int]:
 possible = [42]
 
 for i in range(42):
-    print(f"chance {i}")
+    print(f"\nchance {i}")
     possible = predict(possible, "taxi")
     print(possible)
 
@@ -47,5 +49,9 @@ for i in range(42):
 TODO: Reject possible positions where the 
 requested vehicle is not available to 
 narrow down on Mr. X
+
+So, you need to make the thing interactive.
+Use input() first. If it is successful,
+make a flask web app.
 """
 
