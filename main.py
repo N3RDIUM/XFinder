@@ -15,6 +15,8 @@ def _predict(position: int, vehicle: str) -> list[int]:
             paths = underground
         case "concealed":
             paths = taxi + bus + underground + river
+        case _:
+            pass
 
     for pair in paths:
         pair = list(pair)
@@ -31,6 +33,8 @@ def predict(positions: list[int], vehicle: str) -> list[int]:
 
     for position in positions:
         _ret = _predict(position, vehicle)
+        if len(_ret) == 0:
+            continue
         for x in _ret:
             if x in ret:
                 continue
@@ -38,20 +42,12 @@ def predict(positions: list[int], vehicle: str) -> list[int]:
 
     return ret
 
-possible = [42]
+possible = [eval(input("Enter initial position: "))]
 
-for i in range(42):
-    print(f"\nchance {i}")
-    possible = predict(possible, "taxi")
-    print(possible)
-
-"""
-TODO: Reject possible positions where the 
-requested vehicle is not available to 
-narrow down on Mr. X
-
-So, you need to make the thing interactive.
-Use input() first. If it is successful,
-make a flask web app.
-"""
+i = 1
+while True:
+    print(f"\nRound {i}")
+    possible = predict(possible, input("Enter vehicle type: "))
+    print(f"Possible positions: {possible}")
+    i += 1
 
